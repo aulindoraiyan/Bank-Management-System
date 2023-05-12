@@ -257,7 +257,11 @@ import java.awt.*; as necessary.
               String query = "insert into signup values('" + formno + "', '" + name + "', '" + fname + "', '" + dob + "', '" + gender + "', '" + email + "', '" + maritalStatus + "', '" + address + "', '" + city + "', '" + state + "', '" + country + "')"; 
               
               c.s.executeUpdate(query); // as a result my quesry will run in mysql
-                      
+                
+              
+              // through the line coded below, we can connect form 1 with form 2. 
+              setVisible(false);
+              new SignupTwo(formno).setVisible(true);
           }
       }catch(Exception e){
           System.out.println(e);

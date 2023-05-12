@@ -15,17 +15,19 @@ import java.awt.event.*; // because we are using the active listener interface.
 
 public class SignupTwo extends JFrame implements ActionListener {
     
-    int random;
-    JTextField nameTextField, fnameTextField, dobTextField, emailTextField, 
-            addressTextField, cityTextField, stateTextField, countryTextField;
+    
     
     JButton next;
-    JRadioButton male, female, others, single, married;
-    
+   
+    JComboBox religion, income, education, occupation, seniorCitizen;
+        String formno;// this is how we connect the first form with the secoond one
 
-   SignupTwo() {
+
+   SignupTwo(String formno) {
        
        setLayout(null);
+       this.formno = formno;
+       
        
       setTitle("NEW ACCOUNT APPLICATION FORM ~ PAGE 2");
        
@@ -41,16 +43,16 @@ public class SignupTwo extends JFrame implements ActionListener {
        add(additionalDetails);
        
        // Uporer section 2: 
-       JLabel religion = new JLabel("Religion: ");
-       religion.setFont(new Font("Railway", Font.BOLD, 15));
-       religion.setBounds(100, 140, 100, 30);
-       add(religion);
+       JLabel religionL = new JLabel("Religion: ");
+       religionL.setFont(new Font("Railway", Font.BOLD, 15));
+       religionL.setBounds(100, 190, 100, 30);
+       add(religionL);
        
        String valReligion[] = {"Muslim", "Christian", "Hindu", "Jew", "Other" };
-       JComboBox religionComboBox = new JComboBox(valReligion);
-       religionComboBox.setBounds(300, 140, 400, 30);
-       religionComboBox.setBackground(Color.WHITE);
-       add(religionComboBox);
+        religion = new JComboBox(valReligion);
+       religion.setBounds(300, 190, 400, 30);
+       religion.setBackground(Color.WHITE);
+       add(religion);
        /**
         * so ekhane set bounds emon hobe. look at the uporer section2. okhane
         * 2nd and 4th no. set bounds hoilo 140 + 30 = 170; and jeta add hobe otar 
@@ -59,113 +61,71 @@ public class SignupTwo extends JFrame implements ActionListener {
        
        
       
-       JLabel income = new JLabel("Annual Income: ");
-       income.setFont(new Font("Railway", Font.BOLD, 15));
-       income.setBounds(100, 240, 200, 30);
-       add(income);
+       JLabel incomeL = new JLabel("Annual Income: ");
+       incomeL.setFont(new Font("Railway", Font.BOLD, 15));
+       incomeL.setBounds(100, 240, 200, 30);
+       add(incomeL);
        
        String incomeCategory[] = {"null", "< 50,000$", "< 1,00,000$" , "> 1,00,000$"};
-       JComboBox incomeComboBox = new JComboBox(incomeCategory);
-        incomeComboBox.setBounds(300, 240, 400, 30);
-        incomeComboBox.setBackground(Color.WHITE);
-       add(incomeComboBox);
+        income = new JComboBox(incomeCategory);
+        income.setBounds(300, 240, 400, 30);
+        income.setBackground(Color.WHITE);
+       add(income);
        
        
        
        
-       JLabel Education = new JLabel("Highest Degree / Education: ");
-       Education.setFont(new Font("Railway", Font.BOLD, 13));
-       Education.setBounds(100, 290, 200, 30);
-       add(Education);
+       JLabel EducationL = new JLabel("Highest Degree / Education: ");
+       EducationL.setFont(new Font("Railway", Font.BOLD, 13));
+       EducationL.setBounds(100, 290, 200, 30);
+       add(EducationL);
        
        String educationOption[] = {"High School", "Bachelors", "Masters", "Phd"};
        
-       JComboBox educationComboBox = new JComboBox(educationOption); 
-        educationComboBox.setBounds(300, 290, 120, 30);
-       educationComboBox.setBackground(Color.white);
+        education = new JComboBox(educationOption); 
+        education.setBounds(300, 290, 400, 30);
+       education.setBackground(Color.white);
       
-       add(educationComboBox);
+       add(education);
        
        
      
        
-        JLabel email = new JLabel("Qualification: ");
+        JLabel email = new JLabel("Occupation: ");
        email.setFont(new Font("Railway", Font.BOLD, 15));
        email.setBounds(100, 340, 200, 30);
        add(email);
        
-        emailTextField = new JTextField();
-       emailTextField.setFont(new Font("Railway", Font.BOLD, 14));
-       emailTextField.setBounds(300, 340, 400, 30);
-       add(emailTextField);
+       String OccupationOption[] = {"Salaried", "Self-Employed", "Business", "Student", "Others"};
+        occupation = new JComboBox(OccupationOption);
+          occupation.setFont(new Font("Railway", Font.BOLD, 15));
+       occupation.setBounds(300, 340, 400, 30);
+       add(occupation);
+  
        
-       JLabel maritalStatus = new JLabel("Occupation: ");
-       maritalStatus.setFont(new Font("Railway", Font.BOLD, 15));
-       maritalStatus.setBounds(100, 390, 200, 30);
-       add(maritalStatus);
+       JLabel seniorCitizenL = new JLabel("Senior Citizen: ");
+       seniorCitizenL.setFont(new Font("Railway", Font.BOLD, 15));
+       seniorCitizenL.setBounds(100, 390, 200, 30);
+       add(seniorCitizenL);
        
-        single = new JRadioButton("Single");
-       single.setBounds(300, 390, 80, 30);
-       single.setBackground(Color.white);
-       add(single);
+       String seniorCitizenOption[] = { "Yes", "No" };
        
-        married = new JRadioButton("Married");
-       married.setBounds(450, 390, 80, 30);
-       married.setBackground(Color.white);
-       add(married);
-       
-       ButtonGroup marriageGroup = new ButtonGroup();
-       marriageGroup.add(single);
-       marriageGroup.add(married);
+        seniorCitizen = new JComboBox(seniorCitizenOption);
+       seniorCitizen.setFont(new Font("Railway", Font.BOLD, 15));
+       seniorCitizen.setBounds(300, 390, 400, 30);
+       add(seniorCitizen);
        
        
-       JLabel address = new JLabel("Address: ");
-       address.setFont(new Font("Railway", Font.BOLD, 15));
-       address.setBounds(100, 440, 200, 30);
-       add(address);
-       
-        addressTextField = new JTextField();
-       addressTextField.setFont(new Font("Railway", Font.BOLD, 14));
-       addressTextField.setBounds(300, 440, 400, 30);
-       add(addressTextField);
-       
-        JLabel city = new JLabel("City: ");
-       city.setFont(new Font("Railway", Font.BOLD, 15));
-       city.setBounds(100, 500, 200, 30);
-       add(city);
-       
-        cityTextField = new JTextField();
-       cityTextField.setFont(new Font("Railway", Font.BOLD, 14));
-       cityTextField.setBounds(300, 500, 400, 30);
-       add(cityTextField);
-       
-       JLabel state = new JLabel("Senior Citizen: ");
-       state.setFont(new Font("Railway", Font.BOLD, 15));
-       state.setBounds(100, 550, 200, 30);
-       add(state);
-       
-          stateTextField = new JTextField();
-       stateTextField.setFont(new Font("Railway", Font.BOLD, 14));
-       stateTextField.setBounds(300, 550, 400, 30);
-       add(stateTextField);
        
        
      
-       JLabel country = new JLabel("Existing Account: ");
-       country.setFont(new Font("Railway", Font.BOLD, 15));
-       country.setBounds(100, 600, 200, 30);
-       add(country);
-       
-          countryTextField = new JTextField();
-       countryTextField.setFont(new Font("Railway", Font.BOLD, 14));
-       countryTextField.setBounds(300, 600, 400, 30);
-       add(countryTextField);
+   
        
         next = new JButton("Next");
        next.setBackground(Color.black);
        next.setForeground(Color.white);
        next.setFont(new Font("Railway", Font.BOLD, 14));
-       next.setBounds(620, 660, 80, 30);
+       next.setBounds(620, 550, 80, 30);
        next.addActionListener(this); /** adding this because we need an action 
         * when next button is clicked. 
         * **/
@@ -196,38 +156,18 @@ import java.awt.*; as necessary.
     * @param ae 
     */
    public void actionPerformed(ActionEvent ae){
-      String formno =  "" + random;// int. ekhane shob String value dite hobe tai empty 
+//      String formno =  "" + random;// int. ekhane shob String value dite hobe tai empty 
       // string er sathe int concat (+) kore dilei ota STring hoye jabe. 
-      String name = nameTextField.getText();
-      String fname = fnameTextField.getText();
-      String dob = dobTextField.getText();
-      String gender = null; /**
-       * isSeleted use kore dekhte parbo amader kon Radio Button selected hoise. 
-       * 
-       */
-      if(male.isSelected()){
-          gender = "Male";
-      }
-      else if(female.isSelected()){
-          gender = "Female";
-      }
-      else if (others.isSelected()){
-          gender = "others";
-      }
-      String email = emailTextField.getText();
+      String sReligion = (String)religion.getSelectedItem();  //casting it as String cus religioncombobox.getelected item object return kortesilo. 
       
-      String maritalStatus = null; 
-      if(single.isSelected()){
-      maritalStatus = "Single" ;
-      }
-      else if (married.isSelected()){
-              maritalStatus = "Married";
-              }
+      String sIncome = (String) income.getSelectedItem();
+      String sEducation = (String) education.getSelectedItem();
+      String sOccupation = (String) occupation.getSelectedItem();
+      String sSeniorCitizen = (String) seniorCitizen.getSelectedItem();
       
-      String address = addressTextField.getText();
-      String city = cityTextField.getText();
-      String state = stateTextField.getText();
-      String country = countryTextField.getText();
+      
+      
+  
      
       
       /**
@@ -237,22 +177,24 @@ import java.awt.*; as necessary.
        */
       
       try{
-          if(name.equals("")){
-              JOptionPane.showMessageDialog(null, "Name is required");
-          }else{
+          
               Conn c = new Conn();
-              String query = "insert into signup values('" + formno + "', '" + name + "', '" + fname + "', '" + dob + "', '" + gender + "', '" + email + "', '" + maritalStatus + "', '" + address + "', '" + city + "', '" + state + "', '" + country + "')"; 
+              String query = "insert into signuptwo values('" + formno + "', '" + sReligion + "', '" + sIncome + "', '" + sEducation + "', '" + sOccupation + "', '" + sSeniorCitizen + "')";  
               
               c.s.executeUpdate(query); // as a result my quesry will run in mysql
-                      
-          }
+               
+              //signup3 object
+              setVisible(false);
+              new SignupThree(formno).setVisible(true);
+              
+          
       }catch(Exception e){
           System.out.println(e);
       }
       
       }
     public static void main(String args[]) {
-        new SignupTwo();
+        new SignupTwo("");
         
     
 }
